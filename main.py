@@ -138,3 +138,27 @@ while True:
 
     else:
         print("Invalid choice. Please try again.")
+
+#3
+def decode_message(message):
+    stack = []
+    decoded_message = ""
+    
+    for char in message:
+        if char != "*":
+            stack.append(char)
+        else:
+            if stack:
+                decoded_message += stack.pop()
+
+    # Add any remaining characters in the stack to the decoded message
+    while stack:
+        decoded_message += stack.pop()
+
+    return decoded_message
+
+
+# Test the decoding function
+message = "SIVLE ****** DAED TNSI ***"
+decoded_message = decode_message(message)
+print(decoded_message)  # Output: ELVIS ISNT DEAD
