@@ -59,3 +59,82 @@ expressions = [
 
 for expression in expressions:
     print(is_balanced(expression))
+
+
+
+#2 carwash
+
+class Car:
+    def __init__(self, make, color, plate_number):
+        self.make = make
+        self.color = color
+        self.plate_number = plate_number
+
+    def __str__(self):
+        return f"Make: {self.make}, Color: {self.color}, Plate Number: {self.plate_number}"
+
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, car):
+        self.queue.append(car)
+
+    def dequeue(self):
+        if self.isEmpty():
+            return None
+        return self.queue.pop(0)
+
+    def size(self):
+        return len(self.queue)
+
+    def isEmpty(self):
+        return len(self.queue) == 0
+
+    def front(self):
+        if self.isEmpty():
+            return None
+        return self.queue[0]
+
+
+def print_menu():
+    print("Car Wash Program Menu:")
+    print("1. Insert a car to the queue")
+    print("2. Remove a car from the queue")
+    print("3. Exit the program")
+
+
+# Create an instance of the Queue class
+car_queue = Queue()
+
+# Car Wash Program
+print("Welcome to the Car Wash Program!")
+
+while True:
+    print_menu()
+    choice = input("Enter your choice (1-3): ")
+
+    if choice == '1':
+        make = input("Enter the make of the car: ")
+        color = input("Enter the color of the car: ")
+        plate_number = int(input("Enter the plate number of the car: "))
+
+        car = Car(make, color, plate_number)
+        car_queue.enqueue(car)
+        print("Car added to the queue.")
+
+    elif choice == '2':
+        if car_queue.isEmpty():
+            print("No cars in the queue.")
+        else:
+            car = car_queue.dequeue()
+            print("Car removed from the queue:")
+            print(car)
+
+    elif choice == '3':
+        print("Exiting the program...")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
